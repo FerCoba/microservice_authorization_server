@@ -30,7 +30,7 @@ public class RestTempateDto {
 		Map<String, String> parameters = new HashMap<>();
 		parameters.put("userName", userName);
 		Response userByUserName = restTemplateConfig.clientRestTemplate().getForObject(
-				"http://localhost:8090/api/user/userName/{userName}/userInformationByUserName", Response.class, parameters);
+				"http://192.168.99:8090/api/user/userName/{userName}/userInformationByUserName", Response.class, parameters);
 		return userByUserName;
 	}
 }
