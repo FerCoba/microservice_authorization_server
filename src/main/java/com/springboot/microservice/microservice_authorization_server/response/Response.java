@@ -1,5 +1,7 @@
 package com.springboot.microservice.microservice_authorization_server.response;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.springboot.microservice.servicec_commons.model.entities.User;
 
@@ -16,4 +18,5 @@ public class Response {
 	private String status;
 	private String message;
 	private User users;
+	private List<User> usersList;
 }
