@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -31,9 +30,9 @@ public class AuthorizationConfigServer extends AuthorizationServerConfigurerAdap
 	@Value("${config.security.oauth.client.secret}")
 	private String secret;
 
-	@Autowired
+	@Autowired()
 	BCryptPasswordEncoder passwordEncoder;
-
+	
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -47,8 +46,6 @@ public class AuthorizationConfigServer extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		System.out.println(" client " + client);
-		System.out.println(" secret " + secret);
 		clients.inMemory().withClient(client)
 				.secret(passwordEncoder.encode(secret))
 				.scopes("read", "write").authorizedGrantTypes("password", "refresh_token")
